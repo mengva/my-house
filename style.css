@@ -1,0 +1,2195 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
+    transform-style: preserve-3d;
+}
+
+::-webkit-scrollbar{
+    width: 1.2rem;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #ddd;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #a9a9a9;
+}
+
+body {
+    background-color: #f1f1f1;
+    display: flex;
+    width: 100%;
+    min-height: 150vh;
+    perspective: 5000px;
+    transition: .3s all;
+    overflow-x: hidden;
+    perspective: 3000px;
+}
+
+
+
+:root {
+    --polygon: calc(3 * 60px) 0,
+        calc(11 * 60px) 0,
+        calc(11 * 60px) calc(4 * 60px),
+        calc(14 * 60px) calc(4 * 60px),
+        calc(14 * 60px) calc(10 * 60px),
+        calc(11 * 60px) calc(10 * 60px),
+        calc(11 * 60px) calc(13 * 60px),
+        calc(8 * 60px) calc(13 * 60px),
+        calc(8 * 60px) calc(10 * 60px),
+        calc(6 * 60px) calc(10 * 60px),
+        calc(6 * 60px) calc(12 * 60px),
+        calc(3 * 60px) calc(12 * 60px),
+        calc(3 * 60px) calc(10 * 60px),
+        calc(1 * 60px) calc(10 * 60px),
+        0 calc(9 * 60px),
+        0 calc(5 * 60px),
+        60px calc(4 * 60px),
+        calc(3 * 60px) calc(4 * 60px);
+}
+
+.JS {
+    width: 42px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(203, 135, 8);
+    display: flex;
+    justify-content: space-between;
+    animation: sc 1.5s linear infinite;
+    box-shadow: 0 0 2pc #f01;
+    animation: fill 6s linear infinite;
+    transition: .3s all ease;
+}
+
+.JS .eye:first-child {
+    width: 14px;
+    height: 13px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 5px;
+    top: 10px;
+}
+
+.JS .eye:first-child::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #000;
+    z-index: 1;
+}
+
+.JS .eye:nth-child(2) {
+    width: 14px;
+    height: 13px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    right: 5px;
+    top: 10px;
+}
+
+.JS .eye:nth-child(2)::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #000;
+    z-index: 1;
+}
+
+.JS .mouth {
+    position: absolute;
+    left: 50%;
+    bottom: 2px;
+    width: 20px;
+    height: 15px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    border: 2px solid rgb(255, 255, 255);
+}
+
+@keyframes sc {
+    form {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(.95);
+    }
+}
+
+.active_bg {
+    background-color: rgb(0, 0, 0);
+    transition: .2s all;
+
+}
+
+.container {
+    margin: auto;
+    width: 840px;
+    height: 780px;
+    position: relative;
+}
+
+body:hover .container {
+    animation: ro 40s linear infinite;
+}
+
+
+@keyframes ro {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+
+.container::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #000, transparent, lime, #55ff);
+    background-size: 1rem 1rem;
+    background-repeat: repeat;
+    transform-origin: bottom center;
+    transform: rotateX(90deg) translateY(390px);
+    font-size: 4rem;
+    color: white;
+    display: grid;
+    place-content: center;
+    clip-path: polygon(var(--polygon));
+}
+
+
+.container::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    background-size: 1.5rem 1.5rem;
+    background-repeat: repeat;
+    transform-origin: bottom center;
+    transform: rotateX(90deg) translateY(390px) translateZ(-59px);
+    font-size: 4rem;
+    color: white;
+    display: grid;
+    place-content: center;
+    clip-path: polygon(var(--polygon));
+}
+
+
+.Container_3D {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 300px;
+    animation: ThereD 20s linear infinite;
+}
+
+.Container_3D .TD {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-text-stroke: 4px red;
+    color: transparent;
+    transform: rotateY(calc((360deg / 15) * var(--ThereD))) translateZ(200px);
+    animation: fill 2s linear infinite;
+    animation-delay: calc(.2s * var(--ThereD));
+    text-shadow: 0 0 4pc #f04;
+}
+
+@keyframes ThereD {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(-360deg);
+    }
+}
+
+@keyframes fill {
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.OUTSIDE {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateZ(calc(6.2 * 60px)) translateY(60px) translateX(calc(3.8 * 60px));
+    width: 80px;
+    height: 110px;
+}
+
+.OUTSIDE .box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #000, #006eff, #e8e8);
+    background-repeat: repeat;
+    background-size: 1rem 1rem;
+    transform: rotateY(calc(90deg * var(--i))) translateZ(40px);
+}
+
+.OUTSIDE .right {
+    clip-path: polygon(0 0,
+            10% 0,
+            50% 50%,
+            90% 50%,
+            100% 55%,
+            100% 100%,
+            0 100%);
+}
+
+.OUTSIDE .left {
+    clip-path: polygon(90% 0,
+            50% 50%,
+            10% 50%,
+            0 55%,
+            0 100%,
+            100% 100%,
+            100% 0);
+}
+
+.Stone {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #008cb6, transparent, #55ff);
+    background-size: 1rem 1rem;
+    background-repeat: repeat;
+    transform-origin: bottom center;
+    transform: rotateX(90deg) translateY(1200px) translateZ(-60px) scale(2.2);
+    font-size: 4rem;
+    color: white;
+    display: grid;
+    place-content: center;
+}
+
+.Stone .SS_center {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(45deg, lime, transparent, #000, #55ff);
+    background-repeat: repeat;
+    /* background-size: .5rem 100%; */
+    border: 4px solid #e5e5;
+    transform-origin: bottom center;
+    transform: rotateX(-90deg);
+}
+
+.Stone .SS_center .RoomInside {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 95px;
+    border: 2px solid rgb(5, 147, 229);
+    background-color: #0000006c;
+    bottom: 0;
+}
+
+.Stone .SS_front {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(45deg, lime, transparent, #000, #55ff);
+    background-repeat: repeat;
+    /* background-size: .5rem 100%; */
+    border: 4px solid #e5e5;
+    transform-origin: right center;
+    transform: rotateX(-90deg) translateZ(-730px) translateY(-50px);
+}
+
+.Stone .SS_right {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 93%;
+    height: 100px;
+    background: linear-gradient(45deg, lime, transparent, #000, #55ff);
+    background-repeat: repeat;
+    /* background-size: .5rem 100%; */
+    border: 4px solid #e5e5;
+    transform-origin: right center;
+    transform: rotateX(-90deg) rotateY(-90deg) translateY(-50px) translateX(50px);
+}
+
+.Stone .SS_left {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 93%;
+    height: 100px;
+    background: linear-gradient(45deg, lime, transparent, #000, #55ff);
+    background-repeat: repeat;
+    /* background-size: .5rem 100%; */
+    border: 4px solid #e5e5;
+    transform-origin: left center;
+    transform: rotateX(-90deg) rotateY(90deg) translateY(-50px) translateX(-50px);
+}
+
+
+.wrapper_house {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.khams2M_0751 {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 159px;
+    transform: translateY(calc(4 * -60px)) translateZ(calc(-1 * 60px));
+}
+
+.khams2M_0752 {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 159px;
+    transform: translateY(calc(4 * -60px)) translateZ(calc(-2.5 * 60px));
+}
+
+.khams2M_0752 .AA_I {
+    position: absolute;
+    left: 0;
+    top: 0%;
+    transform-origin: bottom center;
+    transform: rotateY(90deg) translateZ(-45px) translateX(-45px);
+    width: calc(1.5 * 60px);
+    height: 5px;
+}
+
+.khams2M_0752 .AA_I .AA_left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(4 * 60px);
+    height: calc(5.4 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    transform: translateX(-150px) translateY(calc(5.4 * -60px)) rotateX(-123.5deg) skewX(-40deg);
+    clip-path: polygon(0 0,
+            100% 0,
+            100% 100%,
+            calc(2 * 60px) 100%,
+            0 calc(4.3 * 60px));
+    font-size: 5rem;
+    color: white;
+    border-radius: 0 0 0 50px;
+}
+
+.khams2M_0752 .AA_I .AA_right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: calc(4 * 60px);
+    height: calc(5.4 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    font-size: 5rem;
+    color: white;
+    transform: translateX(0px) translateY(calc(5.4 * -60px)) rotateX(123.5deg) skewX(-40.2deg);
+    clip-path: polygon(0 0,
+            100% 0,
+            100% 100%,
+            calc(2 * 60px) 100%,
+            0 calc(4.3 * 60px));
+}
+
+
+.khamTT_1 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 5px;
+    height: calc(2 * 60px);
+    transform: translateY(calc(4 * -60px)) translateX(calc(3 * 60px)) translateZ(30px);
+}
+
+.khamTT_2 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 5px;
+    height: calc(2 * 60px);
+    transform: translateY(calc(4 * -60px)) translateX(calc(6 * 60px)) translateZ(30px);
+}
+
+.khamTT_3 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc(3 * 60px + 5px);
+    height: 5px;
+    transform: translateY(calc(6 * -60px)) translateX(calc(3 * 60px)) translateZ(30px);
+}
+
+.khamTT_3 .AA_right {
+    position: absolute;
+    right: -1.4px;
+    top: 1px;
+    width: calc(3.1 * 60px);
+    height: calc(4.25 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: top center;
+    transform: rotateX(55.8deg) skewX(-40deg);
+    clip-path: polygon(0 0,
+            100% 0,
+            100% 100%,
+            calc(1.25 * 60px) 100%);
+}
+
+.khamTT_3 .AA_left {
+    position: absolute;
+    left: 1.5px;
+    top: 1px;
+    width: calc(3.1 * 60px);
+    height: calc(4.25 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: top center;
+    transform: rotateX(-55.8deg) skewX(-40deg);
+    clip-path: polygon(0 0,
+            100% 0,
+            100% 100%,
+            calc(1.25 * 60px) 100%);
+}
+
+.khamTTR_1 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 5px;
+    height: calc(2 * 60px);
+    transform: translateY(calc(4 * -60px)) translateX(calc(-3 * 60px)) translateZ(30px);
+}
+
+.khamTTR_2 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 5px;
+    height: calc(2 * 60px);
+    transform: translateY(calc(4 * -60px)) translateX(calc(-6 * 60px)) translateZ(30px);
+}
+
+.khamTTR_3 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: calc(3 * 60px + 5px);
+    height: 5px;
+    transform: translateY(calc(6 * -60px)) translateX(calc(-3 * 60px)) translateZ(30px);
+}
+
+.khamTTR_3 .AA_left {
+    position: absolute;
+    width: calc(3 * 60px);
+    height: calc(4.3 * 60px);
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    transform: translateY(calc(4.3 * -60px)) rotateX(-124.5deg) skewX(-40.5deg);
+}
+
+.khamTTR_3 .AA_right {
+    position: absolute;
+    width: calc(3 * 60px);
+    height: calc(4.3 * 60px);
+    top: 0;
+    right: 5px;
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    transform: translateY(calc(4.3 * -60px)) rotateX(124.5deg) skewX(-40deg);
+}
+
+.khamTTR_3 .AA_trans_1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(5.4 * 60px);
+    height: calc(4.25 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    transform: translateY(calc(4.25 * -60px)) translateX(calc(-3.5 * 60px));
+    transform: translateY(calc(4.256 * -60px)) translateX(calc(-3.6 * 60px)) rotateX(-124.5deg) rotateY(1deg);
+    clip-path: polygon(33% 100%,
+            0% 50%,
+            42% 0,
+            58% 0,
+            100% 50%,
+            66% 100%);
+}
+
+.khamTTR_3 .AA_trans_2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(1.7 * 60px);
+    height: calc(1.2 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    transform: translateY(calc(1.2 * -60px)) translateX(calc(-1.76 * 60px)) rotateX(60deg);
+    clip-path: polygon(0 100%,
+            50% 0,
+            100% 100%);
+}
+
+
+.khams1M_1_left {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: calc(1 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform: translateY(calc(4 * -60px)) translateZ(calc(1.5 * -60px));
+}
+
+.BOLS1 {
+    position: absolute;
+    width: calc(4.16 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.5101 * -60px)) translateX(calc(2.46 * 60px)) translateZ(calc(6 * 60px));
+}
+
+.BOLS2 {
+    position: absolute;
+    width: calc(3.16 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.5101 * -60px)) translateX(calc(5 * 60px)) translateZ(calc(4.4 * 60px)) rotateY(90deg);
+}
+
+.BOLS3 {
+    position: absolute;
+    width: calc(2 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.5101 * -60px)) translateX(calc(6 * 60px)) translateZ(calc(4 * 60px));
+}
+
+.BOLS4 {
+    position: absolute;
+    width: calc(4.16 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.5101 * -60px)) translateX(calc(7.46 * 60px)) translateZ(calc(7 * 60px));
+}
+
+.BOLS5 {
+    position: absolute;
+    width: calc(3.16 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.5101 * -60px)) translateX(calc(11.40 * 60px)) translateZ(calc(4 * 60px));
+}
+
+.BOLS6 {
+    position: absolute;
+    width: calc(3.16 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(10 * 60px)) translateZ(calc(5.45 * 60px)) rotateY(90deg);
+}
+
+.BOLS7 {
+    position: absolute;
+    width: calc(7 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(11 * 60px)) translateZ(calc(.5 * 60px)) rotateY(90deg);
+}
+
+.BOLS8 {
+    position: absolute;
+    width: calc(3 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(11.5 * 60px)) translateZ(calc(-3 * 60px));
+}
+
+.BOLS9 {
+    position: absolute;
+    width: calc(4 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(9.5 * 60px)) translateZ(calc(-5 * 60px)) rotateY(90deg);
+}
+
+.BOLS10 {
+    position: absolute;
+    width: calc(9 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(2.5 * 60px)) translateZ(calc(-7 * 60px));
+}
+
+.BOLS11 {
+    position: absolute;
+    width: calc(4 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(0.5 * 60px)) translateZ(calc(-5 * 60px)) rotateY(90deg);
+}
+
+.BOLS12 {
+    position: absolute;
+    width: calc(3 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(0.7 * 60px)) translateZ(calc(-3 * 60px));
+}
+
+.BOLS13 {
+    position: absolute;
+    width: calc(1.7 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(-.7 * 60px)) translateZ(calc(-2.4 * 60px)) rotateY(45deg);
+}
+
+.BOLS14 {
+    position: absolute;
+    width: calc(4.589 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(-2.76 * 60px)) translateZ(calc(.5 * 60px)) rotateY(90deg);
+}
+
+.BOLS15 {
+    position: absolute;
+    width: calc(1.7 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(-.7 * 60px)) translateZ(calc(3.4 * 60px)) rotateY(135deg);
+}
+
+.BOLS16 {
+    position: absolute;
+    width: calc(2 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(.7 * 60px)) translateZ(calc(4 * 60px));
+}
+
+.BOLS17 {
+    position: absolute;
+    width: calc(2 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(1.5 * 60px)) translateZ(calc(5 * 60px)) rotateY(90deg);
+}
+
+.BOLS18 {
+    position: absolute;
+    width: calc(3 * 60px);
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, #55dd, transparent, #000);
+    border: 2px solid #006eff;
+    transform: translateY(calc(3.51 * -60px)) translateX(calc(6 * 60px)) translateZ(calc(5.5 * 60px)) rotateY(90deg);
+}
+
+.RoomCenter {
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomCenter1 .khams1M_1_left .AA,
+.khams1M_1_left .AA {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc(4.2 * 60px);
+    height: calc(2.45 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform: translateX(calc(-2.1 * 60px));
+    transform-origin: center;
+    transform: rotateX(57.5deg) translateX(-122.5px) translateY(79.5px) translateZ(-12.3px);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+
+.RoomCenter1 .SS_strone {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(45deg, #000, #006eff, #e8e8);
+    transform: translateY(60px);
+    background-repeat: repeat;
+    background-size: 1rem 1rem;
+}
+
+.RoomCenter1 .SS_strone::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 120px;
+    height: 60px;
+    background: linear-gradient(45deg, #000, #006eff, #e8e8);
+    transform-origin: left center;
+    transform: rotateY(90deg);
+    background-repeat: repeat;
+    background-size: 1rem 1rem;
+}
+
+.RoomCenter1 .SS_strone::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 120px;
+    height: 60px;
+    background: linear-gradient(45deg, #000, #006eff, #e8e8);
+    transform-origin: right center;
+    transform: rotateY(-90deg);
+    background-repeat: repeat;
+    background-size: 1rem 1rem;
+}
+
+.khams1M_2_left1 {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: calc(1 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform: translateY(calc(4 * -60px)) translateZ(calc(3.5 * -60px));
+}
+
+.khams1M_2_left2 {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: calc(1 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform: translateY(calc(4 * -60px)) translateZ(calc(4.5 * -60px));
+}
+
+.khams1M_2_top1 {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 52%;
+    transform: translateX(-50%);
+    width: calc(2 * 60px);
+    height: 5px;
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom left;
+    transform: rotateY(90deg) translateY(calc(-60px)) translateX(90px);
+}
+
+.khams1M_2_top1 .AA_left {
+    position: absolute;
+    left: 2px;
+    top: 0;
+    width: calc(2.02 * 60px);
+    height: calc(2.45 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    transform: translateY(calc(2.45 * -60px)) rotateX(122.5deg) skewX(40.2deg);
+}
+
+.khams1M_2_top1 .AA_right {
+    position: absolute;
+    right: 2px;
+    top: 0;
+    width: calc(2.02 * 60px);
+    height: calc(2.45 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    transform: translateY(calc(2.45 * -60px)) rotateX(-122.5deg) skewX(40deg) translateX(5px);
+}
+
+
+.khams1M_2_top2 {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 52%;
+    transform: translateX(-50%);
+    width: calc(3 * 60px);
+    height: 5px;
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom left;
+    transform: rotateY(90deg) translateY(calc(-60px)) translateX(90px);
+}
+
+.khams1M_2_top2 .AA_left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(3 * 60px);
+    height: calc(2.45 * 60px);
+    transform-origin: bottom center;
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    transform: rotateX(122.2deg) skewX(40.2deg) translateZ(4.5px) translateY(1px) translateX(-1px);
+}
+
+.khams1M_2_top2 .AA_right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: calc(3 * 60px);
+    height: calc(2.45 * 60px);
+    transform-origin: bottom center;
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    transform: rotateX(-122.2deg) skewX(40.2deg) translateZ(-4.5px) translateY(1px) translateX(-1px);
+}
+
+
+
+
+.RoomCenter1 {
+    position: absolute;
+    width: 180px;
+    height: calc(4 * 60px);
+    bottom: 0;
+    left: calc(3 * 60px);
+    transform: translateZ(330px);
+}
+
+.RoomCenter1 .KhamsD {
+    width: 80px;
+    height: 20px;
+    background: linear-gradient(45deg, #000, #1dd, #55ff);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform-origin: bottom center;
+    transform: translateX(-50%) rotateX(-90deg);
+}
+
+.RoomCenter1 .KhamsD>.top1 {
+    width: 80px;
+    height: 20px;
+    background: linear-gradient(45deg, #000, #1dd, #55ff);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top center;
+    transform: rotateX(90deg);
+}
+
+.RoomCenter1 .KhamsD>.top1>.center {
+    width: 80px;
+    height: 20px;
+    background: linear-gradient(45deg, #000, #1dd, #55ff);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom center;
+    transform: rotateX(-90deg);
+}
+
+.RoomCenter1 .KhamsD>.top1>.center>.top2 {
+    width: 80px;
+    height: 20px;
+    background: linear-gradient(45deg, #000, #1dd, #55ff);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top center;
+    transform: rotateX(90deg);
+}
+
+.RoomCenter1 .KhamsD>.top1>.center .center1 {
+    width: 80px;
+    height: 20px;
+    background: linear-gradient(45deg, #000, #1dd, #55ff);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom center;
+    transform: rotateX(-90deg);
+}
+
+
+.RoomCenter1 .KhamsD>.top1>.center>.top2 .top3 {
+    width: 80px;
+    height: 20px;
+    background: linear-gradient(45deg, #000, #1dd, #55ff);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top center;
+    transform: rotateX(90deg);
+}
+
+/*.RoomCenter1 .left start ************/
+
+.RoomCenter1 .left {
+    position: absolute;
+    width: 20px;
+    height: calc(4 * 60px);
+    background: linear-gradient(45deg, #00ff, transparent, #000, #f01);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform-origin: left center;
+    transform: rotateY(90deg);
+}
+
+
+.RoomCenter1 .left::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    left: 20px;
+    bottom: 0;
+    background-color: #0000006c;
+    outline: .01px solid #1f1f1f93;
+    background-size: 1.2rem 1.2rem;
+    background-repeat: repeat;
+    transform-origin: bottom center;
+}
+
+.RoomCenter1 .left::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: -50px;
+    bottom: 0;
+    background-color: #0000006c;
+    outline: .01px solid #1f1f1f93;
+    transform-origin: right center;
+    transform: rotateY(90deg);
+}
+
+.RoomCenter1 .left .c,
+.right .c {
+    position: absolute;
+    width: 20px;
+    height: calc(4 * 60px);
+    background: linear-gradient(45deg, #00ff, transparent, #000, #f01);
+    bottom: 0;
+    left: 0;
+    transform-origin: right center;
+    transform: rotateY(90deg) translateZ(-20px);
+}
+
+.RoomCenter1 .left .r,
+.right .r {
+    position: absolute;
+    width: 20px;
+    height: calc(4 * 60px);
+    background: linear-gradient(45deg, #00ff, transparent, #000, #f01);
+    bottom: 0;
+    right: 0;
+    transform-origin: right center;
+    transform: rotateY(0deg) translateZ(20px);
+}
+
+.RoomCenter1 .left .f,
+.right .f {
+    position: absolute;
+    width: 20px;
+    height: calc(4 * 60px);
+    background: linear-gradient(45deg, #00ff, transparent, #000, #f01);
+    bottom: 0;
+    left: 0;
+    transform-origin: right center;
+    transform: rotateY(90deg) translateZ(0);
+}
+
+/*.RoomCenter1 .left end ************/
+
+
+/*.RoomCenter1 .right start ************/
+
+.RoomCenter1 .right {
+    position: absolute;
+    width: 20px;
+    height: calc(4 * 60px);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform-origin: right center;
+    transform: rotateY(-90deg);
+}
+
+.RoomCenter1 .right::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    left: -100px;
+    bottom: 0;
+    background-color: #0000006c;
+    outline: .01px solid #1f1f1f93;
+    transform-origin: bottom center;
+}
+
+.RoomCenter1 .right::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 20px;
+    bottom: 0;
+    background-color: #0000006c;
+    outline: .01px solid #1f1f1f93;
+    transform-origin: left center;
+    transform: rotateY(-90deg);
+}
+
+/*.RoomCenter1 .right end ************/
+
+
+/*.RoomCenter1 .top start ************/
+
+.RoomCenter1 .top {
+    position: absolute;
+    width: 180px;
+    height: calc(2 * 60px);
+    background-color: rgba(0, 12, 180, 0.782);
+    top: 0;
+    right: 0;
+    transform-origin: top center;
+    transform: rotateX(-90deg);
+}
+
+
+
+/*.RoomCenter1 .top end ************/
+
+.RoomCenter1 .front {
+    position: absolute;
+    width: 180px;
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform-origin: center;
+    transform: rotateY(0deg) translateZ(calc(2 * -60px));
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomCenter1 .front .center {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 120px;
+    height: calc(3 * 55px);
+    border: 2px solid rgb(5, 147, 229);
+    border-radius: 100px 100px 0 0;
+    border-bottom: transparent;
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomCenter1 .front .center::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgb(0, 71, 148);
+    border-radius: 50px;
+    background-color: rgba(207, 0, 193, 0.794);
+}
+
+.RoomCenter1 .front .center .border {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: calc(2 * 60px);
+    background-color: #000;
+}
+
+.RoomCenter1 .front .center .border::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0%;
+    border: 2px solid rgb(5, 147, 229);
+    border-radius: 2px;
+    background-color: #0000006c;
+}
+
+.RoomCenter1 .front .center .border::after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: 0%;
+    border-right: 2px solid #006eff;
+}
+
+
+/* RoomCenter start */
+
+.RoomCenter {
+    position: absolute;
+    width: calc(2 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateZ(calc(3 * 70px));
+}
+
+.RoomCenter .ROO {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: calc(2 * 50px);
+    border: 2px solid rgb(5, 147, 229);
+    background-color: #0000006c;
+    border-radius: 2px;
+}
+
+.RoomCenter::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(45deg, #000, #006eff, #e8e8);
+    transform: translateY(60px);
+    background-repeat: repeat;
+    background-size: 1rem 1rem;
+
+}
+
+/* RoomCenter end */
+
+/* RoomCenter2 start ************ */
+
+.RoomCenter2 {
+    position: absolute;
+    width: calc(3 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    right: calc(3 * 60px);
+    bottom: 0;
+    transform: translateZ(390px);
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomCenter2 .boxs {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 4px solid #00de0fc9;
+    background-color: #00b3ee6d;
+    left: 20px;
+    top: 40px;
+}
+
+
+.RoomRight1>.boxs {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 4px solid #00de0fc9;
+    background-color: #00b3ee6d;
+    left: 20px;
+    top: 40px;
+}
+
+.RoomRight2>.boxs {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 4px solid #00de0fc9;
+    background-color: #00b3ee6d;
+    left: 20px;
+    top: 40px;
+}
+
+
+.flex .boxs1 {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 4px solid #00de0fc9;
+    background-color: #00b3ee6d;
+    right: 20px;
+    top: 40px;
+}
+
+.flex .boxs2 {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 4px solid #00de0fc9;
+    background-color: #00b3ee6d;
+    left: 200px;
+    top: 40px;
+}
+
+.RoomHouseLeft .RoomHCenter .boxs1 {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 4px solid #00de0fc9;
+    background-color: #00b3ee6d;
+    left: 20px;
+    top: 40px;
+}
+
+.RoomHouseLeft .RoomHCenter .boxs2 {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 4px solid #00de0fc9;
+    background-color: #00b3ee6d;
+    right: 20px;
+    top: 40px;
+}
+
+.RoomCenter2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(45deg, #000, #006eff, #e8e8);
+    transform: translateY(60px);
+    background-repeat: repeat;
+    background-size: 1rem 1rem;
+}
+
+.RoomCenter2 .windows,
+.RoomRight1 .windows,
+.RoomFront .right .windows,
+.RoomRight2 .windows,
+.RoomFront .left .windows {
+    position: absolute;
+    width: calc(2 * 50px);
+    height: calc(2 * 50px);
+    border: 2px solid rgb(5, 147, 229);
+    background-color: rgba(0, 0, 0, 0.506);
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.RoomCenter2 .windows .win,
+.RoomRight1 .windows .win,
+.RoomFront .right .windows .win,
+.RoomRight2 .windows .win,
+.RoomFront .left .windows .win {
+    position: absolute;
+    width: calc(2 * 40px);
+    height: calc(2 * 40px);
+    border: 2px solid rgb(5, 147, 229);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #0000006c;
+}
+
+.RoomCenter2 .windows .win::after,
+.RoomRight1 .windows .win::after,
+.RoomFront .right .windows .win::after,
+.RoomRight2 .windows .win::after,
+.RoomFront .left .windows .win::after {
+    content: "";
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    border-right: 2px solid rgb(5, 147, 229);
+}
+
+.RoomCenter2 .left {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #0000006c;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform-origin: left center;
+    transform: rotateY(90deg);
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomRight1::after,
+.RoomRight2::after,
+.RoomHCenter::after,
+.RoomHRight::before,
+.RoomHLeft::before,
+.Center_left::after,
+.Center_right::after,
+.RoomFront::after,
+.RoomCenter2 .left::after,
+.RoomCenter2 .right::after,
+.RoomRight1 .left::after,
+.RoomFront::before,
+.RoomFront .left::after,
+.RoomFront .right::after,
+.RoomRight2 .right::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(45deg, #000, #006eff, #e8e8);
+    transform: translateY(60px);
+    background-repeat: repeat;
+    background-size: 1rem 1rem;
+}
+
+.RoomCenter2 .right {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #0000006c;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform-origin: right center;
+    transform: rotateY(-90deg);
+    outline: .01px solid #1f1f1f93;
+}
+
+
+
+.RoomCenter2 .top {
+    position: absolute;
+    width: 180px;
+    height: calc(3 * 60px);
+    background-color: rgba(0, 12, 180, 0.782);
+    top: 0;
+    right: 0;
+    transform-origin: top center;
+    transform: rotateX(-90deg);
+}
+
+.RoomCenter2 .front {
+    position: absolute;
+    width: 180px;
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform-origin: center;
+    transform: rotateY(0deg) translateZ(calc(3 * -60px));
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomCenter2 .front::after {
+    content: "";
+    position: absolute;
+    right: 30px;
+    bottom: 0;
+    width: 50px;
+    height: calc(2 * 60px);
+    border: 2px solid rgb(5, 147, 229);
+    border-radius: 2px;
+    background-color: #0000006c;
+}
+
+
+
+/* RoomCenter2 end ************ */
+
+
+/* RoomRight1 start */
+
+.RoomRight1 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 180px;
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    transform-origin: center;
+    transform: rotateY(90deg) translateZ(calc(2 * 45px)) translateX(-120px);
+}
+
+.RoomRight1 .left,
+.RoomRight2 .left {
+    position: absolute;
+    width: 180px;
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform-origin: left center;
+    transform: rotateY(90deg);
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomRight1 .top,
+.RoomRight2 .top {
+    position: absolute;
+    width: calc(3 * 60px);
+    height: calc(3 * 60px);
+    background-color: rgba(0, 12, 180, 0.782);
+    top: 0;
+    right: 0;
+    transform-origin: top center;
+    transform: rotateX(-90deg);
+}
+
+.RoomRight1 .right,
+.RoomRight2 .right {
+    position: absolute;
+    width: calc(3 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform-origin: right center;
+    transform: rotateY(-90deg);
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomRight1 .front,
+.RoomRight2 .front {
+    position: absolute;
+    width: 180px;
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform-origin: center;
+    transform: rotateY(0deg) translateZ(calc(3 * -60px));
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomRight1 .front::after {
+    content: "";
+    position: absolute;
+    left: 30px;
+    bottom: 0;
+    width: 50px;
+    height: calc(2 * 60px);
+    border: 2px solid rgb(5, 147, 229);
+    border-radius: 2px;
+    background-color: rgb(0, 0, 0);
+}
+
+.RoomRight2 .front::after {
+    content: "";
+    position: absolute;
+    right: 30px;
+    bottom: 0;
+    width: 50px;
+    height: calc(2 * 60px);
+    border: 2px solid rgb(5, 147, 229);
+    border-radius: 2px;
+    background-color: rgb(0, 0, 0);
+}
+
+/* RoomRight1 end */
+
+
+/* RoomRight2 start */
+
+.RoomRight2 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 180px;
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    transform-origin: center;
+    transform: rotateY(90deg) translateZ(calc(2 * 45px)) translateX(60px);
+}
+
+.RoomRight2 .AA_center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(6 * 60px);
+    height: calc(3.65 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    transform: translateY(calc(-3.65 * 60px)) rotateX(55.5deg) scaleY(1.18) scaleX(1.17) translateY(30px) translateX(calc(2.55 * -60px));
+    clip-path: polygon(50% 0,
+            100% 100%,
+            0 100%);
+}
+
+/* RoomRight2 end */
+
+/* RoomFront start */
+
+.RoomFront {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: calc(8 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    transform-origin: center;
+    transform: translateZ(calc(6 * -65px)) translateX(calc(3 * -60px));
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomFront .flex {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.RoomFront .AA_top {
+    position: absolute;
+    width: 100%;
+    height: calc(4.8 * 60px);
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    transform: translateY(calc(4.8 * -60px)) rotateX(-56.5deg) scaleX(1.12) scaleY(1.13) translateY(31.5px);
+    clip-path: polygon(50% 0,
+            100% 100%,
+            0 100%);
+}
+
+.RoomFront .flex .windows1 {
+    position: absolute;
+    width: calc(2 * 50px);
+    height: calc(2 * 50px);
+    border: 2px solid rgb(5, 147, 229);
+    background-color: rgb(0, 0, 0);
+    top: 70%;
+    left: 31%;
+    transform: translate(-50%, -50%);
+}
+
+.RoomFront .flex .windows2 {
+    position: absolute;
+    width: calc(2 * 50px);
+    height: calc(2 * 50px);
+    border: 2px solid rgb(5, 147, 229);
+    background-color: rgb(0, 0, 0);
+    top: 70%;
+    right: -2%;
+    transform: translate(-50%, -50%);
+}
+
+
+.RoomFront .flex .windows1 .win,
+.RoomFront .flex .windows2 .win {
+    position: absolute;
+    width: calc(2 * 40px);
+    height: calc(2 * 40px);
+    border: 2px solid rgb(5, 147, 229);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #0000006c;
+}
+
+.RoomFront .flex .windows1 .win::after,
+.RoomFront .flex .windows2 .win::after {
+    content: "";
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    border-right: 2px solid rgb(5, 147, 229);
+}
+
+.RoomFront .RoomF__center {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: calc(4 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    transform-origin: left center;
+    transform: rotateY(-90deg);
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomFront .RoomF__center_left {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: calc(4 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    transform-origin: center;
+    transform: rotateY(-90deg) translateX(calc(2 * 60px)) translateZ(calc(60px));
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomFront .RoomLeft {
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+    width: 50px;
+    height: 120px;
+    border: 2px solid rgb(5, 147, 229);
+    background-color: #0000006c;
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomFront .RoomF__center_right {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc(4 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    transform-origin: center;
+    transform: rotateY(-90deg) translateX(calc(2 * 60px)) translateZ(calc(60px));
+    outline: .01px solid #1f1f1f93;
+}
+
+
+.RoomFront .left {
+    position: absolute;
+    width: calc(4 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform-origin: left center;
+    transform: rotateY(-90deg);
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomFront .right {
+    position: absolute;
+    width: calc(4 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform-origin: right center;
+    transform: rotateY(90deg);
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomFront .top {
+    position: absolute;
+    width: calc(8 * 60px);
+    height: calc(4 * 60px);
+    background-color: rgba(0, 12, 180, 0.782);
+    top: 0;
+    right: 0;
+    transform-origin: top center;
+    transform: rotateX(90deg);
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomFront .front1 {
+    position: absolute;
+    width: calc(3 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform-origin: center;
+    transform: rotateY(0deg) translateZ(calc(4 * 60px));
+}
+
+.RoomFront .front2 {
+    position: absolute;
+    width: calc(3 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform-origin: center;
+    transform: rotateY(0deg) translateZ(calc(4 * 60px)) translateX(calc(4 * -60px));
+}
+
+
+/* RoomFront end */
+
+/* RoomHouseLeft start */
+
+.RoomHouseLeft {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc(6 * 60px);
+    height: calc(4 * 60px);
+    transform: rotateY(90deg) translateZ(calc(2 * -60px)) translateX(-30px);
+}
+
+.RoomHouseLeft .RoomHLeft {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: left center;
+    width: calc(2 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    transform-origin: left center;
+    transform: rotateY(-90deg);
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomHouseLeft .RoomHLeft::after {
+    content: "";
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: calc(2 * 50px);
+    border: 2px solid rgb(5, 147, 229);
+    background-color: #0000006c;
+}
+
+.RoomHouseLeft .RoomHLeft .Room1 {
+    position: absolute;
+    width: calc(6 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    left: 0;
+    top: 0;
+    transform-origin: right center;
+    transform: rotateY(-90deg) translateZ(calc(4 * 60px));
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomHouseLeft .RoomHLeft .Room1::after {
+    content: "";
+    position: absolute;
+    right: 15%;
+    bottom: 0;
+    width: 50px;
+    height: 120px;
+    border-radius: 2px;
+    border: 2px solid rgb(5, 147, 229);
+    background-color: #0000006c;
+}
+
+
+
+.RoomHouseLeft .RoomHRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform-origin: right center;
+    width: calc(2 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    transform-origin: right center;
+    transform: rotateY(90deg);
+    border-radius: 2px;
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomHouseLeft .RoomHRight::after {
+    content: "";
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: calc(2 * 50px);
+    border: 2px solid rgb(5, 147, 229);
+    background-color: #0000006c;
+    border-radius: 2px;
+}
+
+.RoomHouseLeft .RoomHCenter {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc(4 * 60px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    transform: translateZ(calc(-60px)) translateX(60px);
+    outline: .01px solid #1f1f1f93;
+}
+
+.RoomHCenter .OUTSIDE1 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateX(70px) translateZ(-50px) translateY(60px);
+    width: 100px;
+    height: 110px;
+}
+
+.OUTSIDE1 .box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #000, #006eff, #e8e8);
+    background-repeat: repeat;
+    background-size: 1rem 1rem;
+    transform: rotateY(calc(-90deg * var(--i))) translateZ(50px);
+}
+
+.OUTSIDE1 .right {
+    clip-path: polygon(0 0,
+            10% 0,
+            50% 50%,
+            90% 50%,
+            100% 55%,
+            100% 100%,
+            0 100%);
+}
+
+.OUTSIDE1 .left {
+    clip-path: polygon(90% 0,
+            50% 50%,
+            10% 50%,
+            0 55%,
+            0 100%,
+            100% 100%,
+            100% 0);
+}
+
+.RoomHCenter>.KhamsD1 {
+    width: 100px;
+    height: 20px;
+    background: linear-gradient(45deg, #000, #1dd, #55ff);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform-origin: bottom center;
+    transform: translateX(-50%) rotateX(90deg);
+}
+
+.RoomHCenter .KhamsD1 .top1 {
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(45deg, #000, #1dd, #55ff);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top center;
+    transform: rotateX(-90deg);
+}
+
+.RoomHCenter .KhamsD1 .top1 .center {
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(45deg, #000, #1dd, #55ff);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom center;
+    transform: rotateX(90deg);
+}
+
+.RoomHCenter .KhamsD1 .top1 .center .top2 {
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(45deg, #000, #1dd, #55ff);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top center;
+    transform: rotateX(-90deg);
+}
+
+.RoomHCenter .KhamsD1 .top1 .center .top2 .center1 {
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(45deg, #000, #1dd, #55ff);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom center;
+    transform: rotateX(90deg);
+}
+
+.RoomHCenter .KhamsD1 .top1 .center .top2 .center1 .top3 {
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(45deg, #000, #1dd, #55ff);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top center;
+    transform: rotateX(-90deg);
+}
+
+
+
+
+.RoomHouseLeft .RoomHCenter .AA_top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(4 * 60px);
+    height: calc(3.65 * 60px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    transform-origin: bottom center;
+    transform: translateY(calc(-3.65 * 60px)) rotateX(-55.5deg) scaleY(1.16) scaleX(1.16) translateY(30px);
+    clip-path: polygon(50% 0,
+            100% 100%,
+            0 100%);
+}
+
+
+.RoomHouseLeft .RoomHCenter .Room_Center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 120px;
+    height: calc(3 * 55px);
+    border: 2px solid rgb(5, 147, 229);
+    border-radius: 100px 100px 0 0;
+    border-bottom: transparent;
+}
+
+
+.RoomHouseLeft .RoomHCenter .Room_Center::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgb(0, 71, 148);
+    border-radius: 50px;
+    background-color: rgba(207, 0, 193, 0.794);
+}
+
+.RoomHouseLeft .RoomHCenter .Room_Center .border {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: calc(2 * 60px);
+    border-radius: 2px;
+    background-color: rgb(0, 0, 0)
+}
+
+.RoomHouseLeft .RoomHCenter .Room_Center .border::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgb(5, 147, 229);
+    border-radius: 2px;
+    background-color: #0000006c;
+}
+
+.RoomHouseLeft .RoomHCenter .Room_Center .border::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    border-right: 2px solid #006eff;
+}
+
+
+.RoomHouseLeft .RoomHCenter .Center_left {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: calc(2 * 43px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    transform-origin: left center;
+    transform: translateX(calc(2 * 43px)) rotateY(-45deg);
+}
+
+.RoomHouseLeft .RoomHCenter .Center_left .AA_top_l {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(4 * 60px);
+    transform-origin: bottom center;
+    transform: translateY(calc(4 * -60px)) rotateX(-59.7deg) scale(1.2) translateY(32px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    clip-path: polygon(50% 0,
+            100% 100%,
+            0 100%);
+}
+
+.RoomHouseLeft .RoomHCenter .Center_left .RoomHLeft1 {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: calc(2 * 50px);
+    border: 2px solid rgb(5, 147, 229);
+    background-color: #0000006c;
+    border-radius: 2px;
+}
+
+
+.RoomHouseLeft .RoomHCenter .Center_right {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: calc(2 * 43px);
+    height: calc(4 * 60px);
+    background-color: #0000006c;
+    transform-origin: right center;
+    transform: translateX(calc(6 * -40px)) rotateY(45deg);
+}
+
+.RoomHouseLeft .RoomHCenter .Center_right .AA_top_r {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100%);
+    height: calc(4 * 60px);
+    transform-origin: bottom center;
+    transform: translateY(calc(4 * -60px)) rotateX(-59.7deg) scale(1.2) translateY(32px);
+    background: linear-gradient(45deg, #000, #44dd, #d5d5, transparent);
+    clip-path: polygon(50% 0,
+            100% 100%,
+            0 100%);
+}
+
+
+.RoomHouseLeft .RoomHCenter .Center_right .RoomHRight1 {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: calc(2 * 50px);
+    border: 2px solid rgb(5, 147, 229);
+    background-color: #0000006c;
+    border-radius: 2px;
+}
